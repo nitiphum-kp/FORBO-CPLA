@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>สรุปนำเสนอสัญญา Cash Pooling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+ --bg:#0F2C2A; --panel:#153634; --ink:#EAF6F4; --ink-soft:#A9CFCB; --teal:#3FCFC2; --coral:#FF9A6E; --line:#204A46; --hi:#FFE066; --hi-ink:#3B2F00;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+ --bg:#F3FAF8; --panel:#FFFFFF; --ink:#0F2C2A; --ink-soft:#4B6B6A; --teal:#0E7C74; --coral:#FF8A5B; --line:#D8ECE8; --hi:#FFE066; --hi-ink:#3B2F00;
+}}
+:root[data-theme="light"]{--bg:#F3FAF8; --panel:#FFFFFF; --ink:#0F2C2A; --ink-soft:#4B6B6A; --teal:#0E7C74; --coral:#FF8A5B; --line:#D8ECE8;}
+*{box-sizing:border-box;}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:'Prompt','Noto Sans Thai',sans-serif;}
+mark{background:var(--hi);color:var(--hi-ink);padding:1px 5px;border-radius:4px;font-weight:600;}
+.deck{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:900px;margin:0 auto;padding:0 18px;}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 2px;border-bottom:1px solid var(--line);flex:0 0 auto;}
+.brand{font-size:12.5px;color:var(--ink-soft);font-weight:600;}
+.langbtn{border:1.5px solid var(--teal);background:transparent;color:var(--teal);border-radius:999px;padding:5px 14px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;}
+.stage{flex:1 1 auto;overflow:hidden;position:relative;}
+.slide{display:none;height:100%;overflow-y:auto;padding:26px 2px 10px;flex-direction:column;justify-content:flex-start;}
+.slide.active{display:flex;}
+.kicker{font-size:12.5px;font-weight:600;color:var(--coral);letter-spacing:.3px;margin-bottom:6px;}
+h1{font-size:clamp(20px,4.2vw,30px);margin:0 0 8px;font-weight:700;}
+h2{font-size:clamp(18px,3.4vw,24px);margin:0 0 14px;font-weight:600;color:var(--teal);}
+p{color:var(--ink-soft);margin:0 0 10px;font-size:15px;line-height:1.65;}
+ul{margin:0 0 12px;padding-left:20px;}
+li{margin-bottom:8px;font-size:14.5px;line-height:1.6;}
+.clause{display:inline-block;font-size:11px;background:var(--line);color:var(--teal);border-radius:6px;padding:1px 7px;margin-left:5px;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:6px;}
+.tag.edit{background:#FFE066;color:#3B2F00;}
+.tag.add{background:#3FCFC2;color:#06302C;}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:13.5px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;}
+th{background:var(--line);color:var(--ink);}
+.impact{border-left:3px solid var(--coral);padding-left:12px;margin-top:10px;}
+.impact b{color:var(--coral);}
+.center{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;}
+.ctrl{flex:0 0 auto;display:flex;justify-content:center;align-items:center;gap:16px;padding:12px 0 calc(14px + env(safe-area-inset-bottom,0px));}
+.ctrl button{background:var(--teal);color:#06302C;border:none;border-radius:999px;width:40px;height:40px;font-size:17px;cursor:pointer;font-weight:700;}
+.ctrl button:disabled{opacity:.35;cursor:default;}
+.ctrl span{font-size:13px;color:var(--ink-soft);min-width:56px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="deck">
+<div class="top">
+  <span class="brand" id="brand"></span>
+  <button class="langbtn" id="langBtn">EN</button>
+</div>
+<div class="stage" id="stage">
+
+<section class="slide"><div class="center">
+  <div class="kicker" data-i18n="s1_kick"></div>
+  <h1 data-i18n="s1_title"></h1>
+  <p data-i18n="s1_sub"></p>
+  <p style="font-size:13px;margin-top:18px" data-i18n="s1_meta"></p>
+</div></section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_overview"></div>
+  <h2 data-i18n="s2_h"></h2>
+  <p data-i18n="s2_p"></p>
+  <ul>
+    <li data-i18n="s2_l1"></li>
+    <li data-i18n="s2_l2"></li>
+    <li data-i18n="s2_l3"></li>
+  </ul>
+  <div class="impact" data-i18n="s2_impact"></div>
+</section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_finance"></div>
+  <h2 data-i18n="s3_h"></h2>
+  <table><thead><tr><th data-i18n="s3_th1"></th><th data-i18n="s3_th2"></th><th data-i18n="s3_th3"></th></tr></thead>
+   <tbody>
+    <tr><td data-i18n="s3_row1a"></td><td>RFR + Credit Margin (-0.10%)</td><td data-i18n="s3_row1c"></td></tr>
+    <tr><td data-i18n="s3_row2a"></td><td>RFR + Debit Margin (+1.00%)</td><td data-i18n="s3_row2c"></td></tr>
+   </tbody></table>
+  <ul>
+    <li data-i18n="s3_l1"></li>
+    <li data-i18n="s3_l2"></li>
+  </ul>
+  <div class="impact" data-i18n="s3_impact"></div>
+</section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_risk"></div>
+  <h2 data-i18n="s4_h"></h2>
+  <ul>
+    <li data-i18n="s4_l1"></li>
+    <li data-i18n="s4_l2"></li>
+    <li data-i18n="s4_l3"></li>
+    <li data-i18n="s4_l4"></li>
+  </ul>
+  <div class="impact" data-i18n="s4_impact"></div>
+</section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_law"></div>
+  <h2 data-i18n="s5_h"></h2>
+  <ul>
+    <li data-i18n="s5_l1"></li>
+    <li data-i18n="s5_l2"></li>
+  </ul>
+  <div class="impact" data-i18n="s5_impact"></div>
+</section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_rec"></div>
+  <h2 data-i18n="s6_h"></h2>
+  <p data-i18n="s6_p"></p>
+  <div id="editList"></div>
+</section>
+
+<section class="slide">
+  <div class="kicker" data-i18n="k_rec"></div>
+  <h2 data-i18n="s7_h"></h2>
+  <div id="addList"></div>
+  <p style="margin-top:6px" data-i18n="s7_next"></p>
+</section>
+
+</div>
+<div class="ctrl"><button id="prev">←</button><span id="ctr"></span><button id="next">→</button></div>
+</div>
+
+<script>
+const L={
+brand:{th:'flooring. movement. — สรุปนำเสนอสัญญา',en:'flooring. movement. — Contract briefing'},
+s1_kick:{th:'สรุปนำเสนอสำหรับหัวหน้างานและลูกความ',en:'Briefing for management & client'},
+s1_title:{th:'สัญญาบริหารเงินสดรวมศูนย์ภายในกลุ่มบริษัท',en:'Intragroup Cash Pooling Agreement'},
+s1_sub:{th:'Forbo Management SA (ผู้บริหารจัดการ) × Forbo Siegling (Thailand) Co.,Ltd. (บริษัทย่อย) — ผลกระทบทางกฎหมายและการเงิน พร้อมข้อเสนอแนะก่อนลงนาม',en:'Forbo Management SA (Administrator) × Forbo Siegling (Thailand) Co.,Ltd. (Subsidiary) — legal & financial impact, with pre-signing recommendations.'},
+s1_meta:{th:'วันที่มีผลใช้บังคับ 1 ก.ค. 2569 · ลงนาม 9 ก.ค. 2569 · กฎหมายสวิตเซอร์แลนด์',en:'Effective Date 1 Jul 2026 · Signed 9 Jul 2026 · Governed by Swiss law'},
+k_overview:{th:'ภาพรวม',en:'Overview'},
+s2_h:{th:'สัญญานี้คืออะไร และทำงานอย่างไร',en:'What this agreement is, and how it works'},
+s2_p:{th:'ทุกวันทำการ เงินในบัญชีของบริษัทย่อยจะถูก "กวาด" ขึ้นบัญชีหลักของผู้บริหารจัดการ หรือ "เติม" กลับมาตามความจำเป็น การโอนแต่ละครั้งก่อให้เกิดสัญญากู้ยืมระหว่างกันโดยอัตโนมัติ',en:'Every business day, cash in the Subsidiary\'s account is "swept" into the Administrator\'s Master Account, or "covered" (topped up) as needed. Each transfer automatically creates a Loan between the two.'},
+s2_l1:{th:'เงินขาดในบัญชีย่อย → ผู้บริหารจัดการให้กู้ (Downstream Loan) <span class="clause">§1.5, §2.1</span>',en:'Subsidiary short of cash → Administrator lends (Downstream Loan) <span class="clause">§1.5, §2.1</span>'},
+s2_l2:{th:'เงินเหลือในบัญชีย่อย → บริษัทย่อยให้กู้แก่ส่วนกลาง (Upstream Loan) <span class="clause">§1.15, §2.1</span>',en:'Subsidiary surplus → Subsidiary lends to the group (Upstream Loan) <span class="clause">§1.15, §2.1</span>'},
+s2_l3:{th:'ผู้บริหารจัดการรับประกันจัดสภาพคล่องให้เพียงพอต่อการดำเนินงานรายวัน <span class="clause">§2.6</span>',en:'Administrator guarantees sufficient liquidity for daily operations <span class="clause">§2.6</span>'},
+s2_impact:{th:'<b>ผลกระทบ:</b> บริษัทย่อยเข้าถึงสภาพคล่องได้ง่ายขึ้นโดยไม่ต้องกู้ธนาคารภายนอก แต่ต้องยอมรับว่าสถานะเงินสดของตนขึ้นอยู่กับการบริหารของผู้บริหารจัดการที่สวิตเซอร์แลนด์',en:'<b>Impact:</b> the Subsidiary gains easier liquidity without external bank borrowing, but its cash position now depends on management decisions made by the Administrator in Switzerland.'},
+k_finance:{th:'ผลกระทบทางการเงิน',en:'Financial impact'},
+s3_h:{th:'ดอกเบี้ยและภาษี',en:'Interest & tax'},
+s3_th1:{th:'ประเภทเงินกู้ยืม',en:'Loan type'}, s3_th2:{th:'อัตราดอกเบี้ย',en:'Rate'}, s3_th3:{th:'ผู้จ่ายดอกเบี้ย',en:'Interest payer'},
+s3_row1a:{th:'ขาลง (รับเงินจากส่วนกลาง)',en:'Downstream (receives)'},
+s3_row1c:{th:'บริษัทย่อยจ่าย',en:'Subsidiary pays'},
+s3_row2a:{th:'ขาขึ้น (ให้เงินส่วนกลาง)',en:'Upstream (lends out)'},
+s3_row2c:{th:'ผู้บริหารจัดการจ่าย',en:'Administrator pays'},
+s3_l1:{th:'คิดดอกเบี้ยแบบวันจริง/365 วัน หาก RFR ติดลบให้ถือเป็นศูนย์ <span class="clause">§3.1-3.2</span>',en:'Actual/365 basis; RFR floored at zero if negative <span class="clause">§3.1-3.2</span>'},
+s3_l2:{th:'การชำระเงินทุกประเภทต้อง "gross-up" หากถูกหักภาษี ณ ที่จ่าย <span class="clause">§4</span>',en:'All payments are grossed-up if subject to withholding tax <span class="clause">§4</span>'},
+s3_impact:{th:'<b>ผลกระทบ:</b> ส่วนต่างระหว่างอัตราที่บริษัทย่อยจ่าย (RFR+1.00%) กับอัตราที่ได้รับ (RFR-0.10%) ต่างกันถึง 1.10% ต่อปี ควรตรวจสอบว่าสอดคล้องกับผลการศึกษาการกำหนดราคาโอน (transfer pricing) และไม่กระทบต่อการยื่นขอ FBL',en:'<b>Impact:</b> the spread between what the Subsidiary pays (RFR+1.00%) and receives (RFR-0.10%) is 1.10% p.a. — confirm it matches the transfer-pricing study and does not raise FBL concerns.'},
+k_risk:{th:'ภาระและความเสี่ยง',en:'Obligations & risk'},
+s4_h:{th:'พันธะผูกพัน ความเสี่ยง และการเลิกสัญญา',en:'Obligations, risk & termination'},
+s4_l1:{th:'บริษัทย่อยต้องรายงานฐานะการเงินให้ผู้บริหารจัดการทุกเดือน <span class="clause">§5.1</span>',en:'Subsidiary must report financials to the Administrator monthly <span class="clause">§5.1</span>'},
+s4_l2:{th:'บริษัทย่อยรับรองความสามารถ ความถูกต้องตามกฎหมาย และการปฏิบัติตาม Cash Pool Policy <span class="clause">§6.1</span>',en:'Subsidiary represents capacity, legal compliance, and adherence to the Cash Pool Policy <span class="clause">§6.1</span>'},
+s4_l3:{th:'ผู้บริหารจัดการตัดบริษัทย่อยออกและเลิกสัญญาได้ทันที หากเห็นความเสี่ยงต่อกลุ่ม (ดุลยพินิจเด็ดขาด) หรือบริษัทย่อยผิดคำรับรองข้อ 6 <span class="clause">§9.4-9.5</span>',en:'The Administrator may exclude the Subsidiary and terminate immediately if it sees risk to the group (sole discretion), or if §6 is breached <span class="clause">§9.4-9.5</span>'},
+s4_l4:{th:'เงินกู้ยืมทุกรายการเรียกคืนได้ทันทีเมื่อทวงถาม ไม่ว่าสัญญาจะยังอยู่หรือไม่ <span class="clause">§2.4</span>',en:'Every Loan is repayable on demand, regardless of whether the agreement continues <span class="clause">§2.4</span>'},
+s4_impact:{th:'<b>ผลกระทบ:</b> อำนาจตัดสินใจส่วนใหญ่อยู่ที่ผู้บริหารจัดการ บริษัทย่อยควรประเมินความเสี่ยงด้านสภาพคล่องหากถูกเรียกคืนเงินกู้กะทันหัน และพิจารณาแผนสำรอง',en:'<b>Impact:</b> most discretion sits with the Administrator. The Subsidiary should assess liquidity risk from a sudden recall and keep a contingency plan.'},
+k_law:{th:'กฎหมายและข้อพิพาท',en:'Law & disputes'},
+s5_h:{th:'กฎหมายที่ใช้บังคับและการระงับข้อพิพาท',en:'Governing law & dispute resolution'},
+s5_l1:{th:'อยู่ภายใต้กฎหมายสวิตเซอร์แลนด์ ไม่ใช่กฎหมายไทย <span class="clause">§12.1</span>',en:'Governed by Swiss law, not Thai law <span class="clause">§12.1</span>'},
+s5_l2:{th:'ข้อพิพาทระงับโดยอนุญาโตตุลาการ ณ นครซูริก ผู้ตัดสินคนเดียว ดำเนินการเป็นภาษาอังกฤษ <span class="clause">§12.2</span>',en:'Disputes go to arbitration in Zurich, one arbitrator, proceedings in English <span class="clause">§12.2</span>'},
+s5_impact:{th:'<b>ผลกระทบ:</b> หากเกิดข้อพิพาทมูลค่าน้อย ต้นทุนและระยะทางในการดำเนินคดีที่ซูริกอาจไม่คุ้มค่าในทางปฏิบัติสำหรับบริษัทย่อย',en:'<b>Impact:</b> for a low-value dispute, the cost and distance of Zurich arbitration may not be practical for the Subsidiary.'},
+k_rec:{th:'ข้อเสนอแนะก่อนลงนาม',en:'Recommendations before signing'},
+s6_h:{th:'จุดที่ควรแก้ไข', en:'Points to revise'},
+s6_p:{th:'ข้อความที่ไฮไลต์คือคำแนะนำในการแก้ไขถ้อยคำเดิมของร่างสัญญา',en:'Highlighted text marks a suggested edit to the draft\'s existing wording.'},
+s7_h:{th:'จุดที่ควรเพิ่มเติม',en:'Points to add'},
+s7_next:{th:'<b>ขั้นตอนถัดไป:</b> หารือประเด็นข้างต้นกับที่ปรึกษากฎหมายฝั่งสวิตเซอร์แลนด์ และเจรจาแก้ไขร่วมกับลูกความก่อนลงนามหรือยื่นขอ FBL',en:'<b>Next step:</b> discuss the points above with Swiss counsel and negotiate with the client before signing or filing the FBL application.'}
+};
+
+const EDITS=[
+ {c:'§1.5, §1.15',th:['คำว่า "Master Company" ไม่ได้ถูกนิยามไว้ในข้อ 1',' แก้ไขให้ใช้คำว่า "ผู้บริหารจัดการ (Administrator)" ให้ตรงกันทั้งฉบับ'],
+  en:['"Master Company" is used but never defined in §1',' revise to consistently say "Administrator" throughout.']},
+ {c:'§3.1',th:['สูตรดอกเบี้ยดูเหมือนสลับกัน (เงินกู้ยืมขาลงได้ credit Margin ติดลบ, ขาขึ้นได้ debit Margin บวก)',' ตรวจสอบกับผลการศึกษา transfer pricing และแก้ไขให้ถูกต้อง'],
+  en:['The formula appears reversed (Downstream gets negative credit Margin, Upstream gets positive debit Margin)',' verify against the transfer-pricing study and correct.']},
+ {c:'§5.5',th:['ลำดับข้อย่อยกระโดดจาก (ii) ไป (iv) ขาดข้อ (iii)',' เติมข้อย่อยที่ขาดหายหรือเรียงลำดับใหม่ให้ครบถ้วน'],
+  en:['Sub-clauses jump from (ii) to (iv), skipping (iii)',' add the missing item or renumber.']},
+ {c:'§9.6',th:['เขียนว่าการชำระคืน "ต้องไม่น้อยกว่า" 1 วันทำการ ซึ่งขัดกับเจตนาที่ควรเป็นกรอบเวลาสูงสุด',' แก้เป็น "ไม่เกิน" 1 วันทำการ'],
+  en:['States repayment must be "not less than" one working day, which likely should be a maximum, not a minimum',' change to "not more than".']},
+ {c:'Exhibit 1',th:['แถว HKD อ้างอิง "Sweden Repo Rate" ซ้ำกับ SEK ซึ่งไม่ถูกต้อง',' แก้ไขให้ใช้อัตราอ้างอิงของ HKD ที่ถูกต้อง (เช่น HONIA)'],
+  en:['The HKD row references "Sweden Repo Rate", duplicating SEK — incorrect',' correct to the proper HKD benchmark (e.g. HONIA).']},
+ {c:'§1.6, ลายเซ็น',th:['วันที่มีผลใช้บังคับ (1 ก.ค. 2569) มาก่อนวันที่ลงนามจริง (9 ก.ค. 2569) และวันที่ของเอกสารแนบ 1',' ปรับวันที่ทั้งฉบับให้สอดคล้องกัน'],
+  en:['The Effective Date (1 Jul 2026) precedes the actual signing date and Exhibit 1\'s date (9 Jul 2026)',' align all dates in the document.']}
+];
+const ADDS=[
+ {c:'ทั่วไป / General',th:['ไม่มีบท "เหตุผิดสัญญา" (Events of Default) ที่ชัดเจนแยกจากดุลยพินิจของผู้บริหารจัดการ',' ควรเพิ่มรายการเหตุผิดสัญญาที่ชัดเจนและสมดุลระหว่างคู่สัญญา'],
+  en:['No clear "Events of Default" clause separate from the Administrator\'s discretion',' add a defined, balanced list of default events.']},
+ {c:'ทั่วไป / General',th:['ไม่มีข้อกำหนดเหตุสุดวิสัย (Force Majeure)',' ควรเพิ่มเพื่อคุ้มครองทั้งสองฝ่ายจากเหตุที่ควบคุมไม่ได้'],
+  en:['No Force Majeure clause',' add to protect both parties from uncontrollable events.']},
+ {c:'§11',th:['ไม่มีข้อกำหนดช่องทางและที่อยู่การแจ้งเตือนอย่างเป็นทางการ (Notices)',' ควรเพิ่มข้อกำหนดเรื่องวิธีการและที่อยู่ในการส่งคำบอกกล่าว'],
+  en:['No formal Notices clause (channel/address for official communication)',' add one.']},
+ {c:'§3',th:['ไม่มีข้อกำหนดอัตราสำรองหาก RFR อ้างอิง (เช่น THOR) ถูกยกเลิกหรือเปลี่ยนแปลง',' ควรเพิ่ม fallback/benchmark-replacement clause'],
+  en:['No fallback if the reference RFR (e.g. THOR) is discontinued or changed',' add a benchmark-replacement clause.']},
+ {c:'ทั่วไป / General',th:['ไม่มีการอ้างอิงถึงกฎหมายควบคุมการแลกเปลี่ยนเงินตราและระเบียบธนาคารแห่งประเทศไทยที่เกี่ยวข้อง',' ควรเพิ่มเงื่อนไขการปฏิบัติตามกฎหมายปริวรรตเงินตราของไทย'],
+  en:['No reference to Thai FX-control law / Bank of Thailand rules that may apply',' add a Thai regulatory-compliance condition.']},
+ {c:'§12.2',th:['กลไกอนุญาโตตุลาการที่ซูริกมีต้นทุนสูงสำหรับข้อพิพาทมูลค่าน้อย',' ควรพิจารณาเพิ่มทางเลือกไกล่เกลี่ยหรือขั้นตอนแบบย่อสำหรับข้อพิพาทมูลค่าต่ำ'],
+  en:['Zurich arbitration is costly for low-value disputes',' consider adding a mediation step or simplified track for small claims.']}
+];
+
+let lang='th', idx=0;
+function tag(items,cls){return items.map(x=>`<div class="card"><span class="tag ${cls}">${cls==='edit'?(lang==='th'?'แก้ไข':'Revise'):(lang==='th'?'เพิ่มเติม':'Add')}</span> <span class="clause">${x.c}</span><p style="margin:6px 0 0">${x[lang][0]} — <mark>${x[lang][1].trim()}</mark></p></div>`).join('');}
+function renderStatic(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(L[k]) el.innerHTML=L[k][lang];});
+  document.getElementById('langBtn').textContent = lang==='th'?'EN':'ไทย';
+  document.getElementById('editList').innerHTML = tag(EDITS,'edit');
+  document.getElementById('addList').innerHTML = tag(ADDS,'add');
+}
+const slides=()=>[...document.querySelectorAll('.slide')];
+function show(i){
+  const s=slides(); idx=Math.max(0,Math.min(i,s.length-1));
+  s.forEach((el,j)=>el.classList.toggle('active',j===idx));
+  document.getElementById('ctr').textContent=(idx+1)+' / '+s.length;
+  document.getElementById('prev').disabled=idx===0;
+  document.getElementById('next').disabled=idx===s.length-1;
+}
+document.getElementById('prev').addEventListener('click',()=>show(idx-1));
+document.getElementById('next').addEventListener('click',()=>show(idx+1));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(idx+1); if(e.key==='ArrowLeft')show(idx-1);});
+document.getElementById('langBtn').addEventListener('click',()=>{lang=lang==='th'?'en':'th'; renderStatic();});
+renderStatic(); show(0);
+</script>
+</body>
+</html>
